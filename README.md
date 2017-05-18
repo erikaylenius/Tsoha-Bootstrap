@@ -1,10 +1,12 @@
-# Tietokantasovelluksen esittelysivu
+# Tietokantasovelluksen esittelysivu: Tilausjärjestelmä
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki sovellukseeni (ei vielä toiminnassa)](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma)
+* [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Työn aihe mukailee hyvin pitkälti valmista aihetta, tukkuliikkeen tilaustenkäsittelyä. Pienet eroavaisuudet ilmenevät dokumentaatiosta. 
+
+[Valmis aihe: Tukkuliikkeen tilaustenkäsittely](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tukkuliikkeen_tilaustenksittely.html) 
