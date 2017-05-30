@@ -2,24 +2,23 @@
 {% block content %}
   <h1>Uusi tilaus</h1>
 
-  <form>
-    <thread>
-      <tr>
-        <th>Tuote</th>
-        <th>Lukumäärä</th>
-      </tr>
-      <tr>
-      <th>
-      <input type="text" class="form-control" value="76">
-    </th>
-    <th>
-      <input type="text" class="form-control" value="3">
-    </th>
-    </tr>
-  </thread>
+
+  <form class="form-horizontal">
+
+    <div class="form-group">
+      <label>Siika</label>
+      <input type="text" class="form-control" value="0">
+    </div>
+
+    <div class="form-group">
+      <label>Kuha</label>
+      <input type="password" class="form-control" value="0">
+    </div>
+
 
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Lähetä tilaus</button>
     </div>
-  </form>
+    </form>
+
 {% endblock %}
