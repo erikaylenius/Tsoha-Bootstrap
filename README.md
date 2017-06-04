@@ -20,3 +20,4 @@ Työn aihe mukailee hyvin pitkälti valmista aihetta, tukkuliikkeen tilaustenkä
 * [Asiakas: rekisteröidy](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/rekisteroidy)
 * [Ylläpitäjä: tilausten tarkastelu](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tilaukset)
 * [Asiakas: uusi tilaus](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/uusitilaus)
+* * [Ylläpitäjä: tuoteluettelo](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tuotteet_yp)

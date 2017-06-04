@@ -35,3 +35,7 @@
   $routes->get('/uusitilaus', function() {
     HelloWorldController::uusitilaus();
   });
+
+    $routes->get('/tuotteet_yp', function() {
+    HelloWorldController::tuotteet_yp();
+  });

@@ -11,17 +11,18 @@ CREATE TABLE Asiakas(
 
 CREATE TABLE Tilaus(
 	id SERIAL PRIMARY KEY,
-	asiakas_id varchar(50) REFERENCES Asiakas(id),
+	asiakas_id INTEGER REFERENCES Asiakas(id),
 	loppusumma money NOT NULL,
 	maksettu boolean DEFAULT FALSE
 );
 
 CREATE TABLE Tuote(
 	id SERIAL PRIMARY KEY,
+	nimike varchar(50) NOT NULL,
 	hinta money NOT NULL,
 	kuvaus varchar(200),
-	varastosaldo INTEGER NOT NULL CHECK (varastosaldo <= 0),
-	halytyssaldo INTEGER NOT NULL CHECK (halytyssaldo <= 0)
+	varastosaldo INTEGER NOT NULL CHECK (varastosaldo >= 0),
+	halytyssaldo INTEGER NOT NULL CHECK (halytyssaldo >= 0)
 );
 
 CREATE TABLE Tilatut(

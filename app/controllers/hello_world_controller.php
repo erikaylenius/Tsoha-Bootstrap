@@ -46,4 +46,8 @@
       View::make('suunnitelmat/uusitilaus.html');
     }
 
+     public static function tuotteet_yp(){
+      View::make('suunnitelmat/tuotteet_yp.html');
+    }
+
   }
