@@ -23,7 +23,7 @@
       <!-- Tuotteet listana -->
       {% for tuote in tuotteet %}
       <tr>
-        <td><a class="btn btn-default btn-sm" href="{{base_path}}/{{tuote.id}}/tuote_yp">{{tuote.nimike}}</a></td>
+        <td><a href="{{base_path}}/{{tuote.id}}">{{tuote.nimike}}</a></td>
         <td>{{tuote.hinta}}</td>
         <td>{{tuote.kuvaus}}</td>
         <td>{{tuote.varastosaldo}}</td>

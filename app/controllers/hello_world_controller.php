@@ -55,4 +55,12 @@
       View::make('suunnitelmat/tuotteet_yp.html');
     }
 
+    public static function tuote_yp(){
+      View::make('suunnitelmat/tuote_yp.html');
+    }
+
+    public static function uusituote(){
+      View::make('suunnitelmat/uusituote.html');
+    }
+
   }

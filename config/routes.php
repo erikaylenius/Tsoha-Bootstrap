@@ -39,3 +39,14 @@
     $routes->get('/tuotteet_yp', function() {
     TuoteController::index();
   });
+
+    $routes->get('/tuote_yp', function() {
+    HelloWorldController::tuote_yp();
+  });
+    $routes->get('/uusituote', function() {
+    HelloWorldController::uusituote();
+  });   
+
+    $routes->get(':id', function($id) {
+    TuoteController::show($id);
+  });

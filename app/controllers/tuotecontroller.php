@@ -5,4 +5,5 @@
     		$tuotteet = Tuote::all();
     		View::make('suunnitelmat/tuotteet_yp.html', array('tuotteet' => $tuotteet));
   		}
+
 	}
