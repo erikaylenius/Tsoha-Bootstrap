@@ -7,13 +7,14 @@
 			parent::__construct($attributes);
 		}
 
-		public static function save(){
-
+		public function save(){
+			$query = DB::connection()->prepare('INSERT INTO Tuote VALUES ($this->id, $this->nimike, $this->hinta, $this->kuvaus, $this->varastosaldo, $this->halytyssaldo)');
+			$query->execute;
 		}
 
 		public static function all(){
     
-    		$query = DB::connection()->prepare('SELECT * FROM Tuote);
+    		$query = DB::connection()->prepare('SELECT * FROM Tuote');
     		$query->execute();
     		$rows = $query->fetchAll();
    			$tuotteet = array();
@@ -22,7 +23,7 @@
       			$tuotteet[] = new Tuote(array(
         		'id' => $row['id'],
         		'nimike' => $row['nimike'],
-        		'hinta' => $row['hinta],
+        		'hinta' => $row['hinta'],
         		'kuvaus' => $row['kuvaus'],
         		'varastosaldo' => $row['varastosaldo'],
         		'halytyssaldo' => $row['halytyssaldo'],

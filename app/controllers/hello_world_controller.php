@@ -11,7 +11,12 @@
     public static function sandbox(){
       // Testaa koodiasi täällä
       // echo 'Hello World!';
-      View::make('helloworld.html');
+      //View::make('helloworld.html');
+      $tuote = Tuote::find(1);
+      $tuotteet = Tuote::all();
+      // Kint-luokan dump-metodi tulostaa muuttujan arvon
+      Kint::dump($tuotteet);
+      Kint::dump($tuote);
     }
 
     public static function etusivu(){

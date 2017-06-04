@@ -37,5 +37,5 @@
   });
 
     $routes->get('/tuotteet_yp', function() {
-    HelloWorldController::tuotteet_yp();
+    TuoteController::index();
   });
