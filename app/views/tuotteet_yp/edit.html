@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa tuotetta</h1>
+
+  <form method="post" action="{{base_path}}/tuotteet_yp">
+    <div class="form-group">
+      <label>Nimike</label>
+      <input type="text" name="nimike" class="form-control" value="{{tuote.nimike}}">
+    </div>
+
+    <div class="form-group">
+      <label>Hinta</label>
+      <input type="text" name="hinta" class="form-control" value="{{tuote.hinta}}">
+    </div>
+
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <input type="text" name="kuvaus" class="form-control" value="{{tuote.kuvaus}}">
+    </div>
+
+    <div class="form-group">
+      <label>Varastosaldo</label>
+      <input type="text" name="varastosaldo" class="form-control" value="{{tuote.varastosaldo}}">
+    </div>
+
+     <div class="form-group">
+      <label>Hälytyssaldo</label>
+      <input type="text" name="halytyssaldo" class="form-control" value="{{tuote.halytyssaldo}}">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+    </div>
+  </form>
+{% endblock %}

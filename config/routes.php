@@ -41,12 +41,40 @@
   });
 
     $routes->get('/tuote_yp', function() {
-    HelloWorldController::tuote_yp();
+    TuoteController::tuote_yp();
   });
-    $routes->get('/uusituote', function() {
-    HelloWorldController::uusituote();
+
+  // Tuotteen lisäyssivu  
+  $routes->get('/tuotteet_yp/uusituote', function() {
+    TuoteController::uusituote();
   });   
 
-    $routes->get(':id', function($id) {
+  // Tuotteen lisääminen tietokantaan
+  $routes->post('/tuotteet_yp/uusituote', function(){
+    TuoteController::store();
+  });
+
+  // Tuotteen lisäyslomakkeen näyttäminen
+  $routes->get('/tuotteet_yp/uusituote', function(){
+    TuoteController::create();
+    });
+
+  $routes->get('/tuotteet_yp/:id', function($id) {
+    // Tuotteen esittelysivu
     TuoteController::show($id);
+  });
+
+  $routes->get('/tuotteet_yp/:id/edit', function($id){
+    // Tuotteen muokkauslomakkeen esittäminen
+    TuoteController::edit($id);
+  });
+
+  $routes->post('/tuotteet_yp/:id/edit', function($id){
+    // Tuotteen muokkaaminen
+    TuoteController::update($id);
+  });
+
+  $routes->post('/tuotteet_yp/:id/destroy', function($id){
+    // Tuotteen poisto
+    TuoteController::destroy($id);
   });

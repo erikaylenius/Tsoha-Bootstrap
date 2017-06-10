@@ -12,6 +12,16 @@
 			$query->execute;
 		}
 
+    public function update(){
+      $query = DB::connection()->prepare('UPDATE Tuote VALUES ($this->id, $this->nimike, $this->hinta, $this->kuvaus, $this->varastosaldo, $this->halytyssaldo)');
+      $query->execute;
+    }
+
+    public function destroy(){
+      $query = DB::connection()->prepare('DESTROY Tuote VALUES ($this->id, $this->nimike, $this->hinta, $this->kuvaus, $this->varastosaldo, $this->halytyssaldo)');
+      $query->execute;
+    }
+
 		public static function all(){
     
     		$query = DB::connection()->prepare('SELECT * FROM Tuote');
@@ -52,5 +62,7 @@
 
     	return null;
   		}
+
+
 
 	}

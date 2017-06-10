@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1>{{tuote.nimike}}</h1>
+  <!-- Painikkeet tähän -->
+  <p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+  </p>
+  <!-- Tiedot tulee listana tähän -->
+  <ul>
+    <li><strong>Hinta:</strong> {{tuote.hinta}} </li>
+    <li><strong>Kuvaus:</strong> {{tuote.kuvaus}} </li>
+    <li><strong>Varastosaldo:</strong> {{tuote.varastosaldo}} </li>
+    <li><strong>Halytyssaldo:</strong> {{tuote.halytyssaldo}} </li>
+  </ul>
+{% endblock %}
