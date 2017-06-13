@@ -3,7 +3,7 @@
 	class TuoteController extends BaseController{
 		public static function index(){
     		$tuotteet = Tuote::all();
-    		View::make('suunnitelmat/tuotteet_yp.html', array('tuotteet' => $tuotteet));
+    		View::make('tuotteet_yp/tuotteet_yp.html', array('tuotteet' => $tuotteet));
   		}
 
     public static function tuote_yp(){
@@ -12,7 +12,7 @@
 
   		public static function show($id){
         $tuote = Tuote::find($id);
-  			View::make('tuotteet_yp/tuote_yp.html', array('tuote' => $tuote);
+  			View::make('tuotteet_yp/tuote_yp.html', array('tuote' => $tuote));
   		}
 
 //UUDEN TUOTTEEN TALLETUS
@@ -29,7 +29,7 @@
       'nimike' => $params['nimike'],
       'hinta' => $params['hinta'],
       'kuvaus' => $params['kuvaus'],
-      'varastosaldo' => $params['varastosaldo']
+      'varastosaldo' => $params['varastosaldo'],
       'halytyssaldo' => $params['halytyssaldo']
     ));
 
@@ -54,7 +54,7 @@
     $attribuutit = array(
       'id' => $id,
       'nimike' => $params['nimike'],
-      'hinta' => $params['hinta']
+      'hinta' => $params['hinta'],
       'kuvaus' => $params['kuvaus'],
       'varastosaldo' => $params['varastosaldo'],
       'halytyssaldo' => $params['halytyssaldo']
