@@ -37,7 +37,7 @@
     $uusituote->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen tuotteen esittelysivulle
-    Redirect::to('/tuotteet_yp' . $uusituote->id, array('message' => 'Tuotteen lisääminen onnistui.'));
+    Redirect::to('{{base_path}}/tuotteet_yp' . $uusituote->id, array('message' => 'Tuotteen lisääminen onnistui.'));
   }  
 
 
@@ -62,7 +62,7 @@
 
     // Alustetaan Tuote-olio käyttäjän syöttämillä tiedoilla
     $muokattutuote = new Tuote($attribuutit);
-    $errors = $game->errors();
+    $errors = $tuote->errors();
 
     if(count($errors) > 0){
       View::make('tuotteet_yp/edit.html', array('errors' => $errors, 'attribuutit' => $attribuutit));
@@ -70,7 +70,7 @@
       // Kutsutaan alustetun olion update-metodia, joka päivittää tuotteen tiedot tietokannassa
       $muokattutuote->update();
 
-      Redirect::to('tuotteet_yp/edit.html' . $muokattutuote->id, array('message' => 'Tietojen muutokset tallennettu'));
+      Redirect::to('{{base_path}}/tuotteet_yp' . $muokattutuote->id, array('message' => 'Tietojen muutokset tallennettu'));
     }
   }
 
@@ -83,7 +83,7 @@
     $poistettava->destroy();
 
     // Ohjataan käyttäjä tuotteiden listaussivulle ilmoituksen kera
-    Redirect::to('tuotteet_yp', array('message' => 'Tuote poistettu'));
+    Redirect::to('{{base_path}}/tuotteet_yp', array('message' => 'Tuote poistettu'));
   }
 
 	}

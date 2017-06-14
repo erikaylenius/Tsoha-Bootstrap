@@ -63,6 +63,24 @@
     	return null;
   		}
 
+      // Validointi
 
+      public function validate_nimike(){
+        $errors = array();
+        if($this->nimike == '' || $this->nimike == null){
+        $errors[] = 'Nimike-kenttä oli tyhjä.';
+      }
+
+      if(strlen($this->nimike) < 2){
+        $errors[] = 'Nimike-kentän pituuden tulee olla yli 2 merkkiä.';
+      }
+
+      if(strlen($this->nimike) > 20){
+        $errors[] = 'Nimike-kentän pituus saa olla korkeintaan 20 merkkiä.';
+      }
+
+
+      return $errors;
+}
 
 	}

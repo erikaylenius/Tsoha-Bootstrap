@@ -22,4 +22,4 @@ Työn aihe mukailee hyvin pitkälti valmista aihetta, tukkuliikkeen tilaustenkä
 * [Asiakas: uusi tilaus](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/uusitilaus)
 * [Ylläpitäjä: tuoteluettelo](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tuotteet_yp)
 * [Ylläpitäjä: yksittäisen tuotteen näkymä](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tuote_yp)
-* [Ylläpitäjä: uuden tuotteen lisäys](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/uusituote)
+* [Ylläpitäjä: uuden tuotteen lisäys](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tuotteet_yp/uusituote)
