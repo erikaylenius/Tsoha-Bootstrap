@@ -12,6 +12,10 @@ Työn aihe mukailee hyvin pitkälti valmista aihetta, tukkuliikkeen tilaustenkä
 [Valmis aihe: Tukkuliikkeen tilaustenkäsittely](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tukkuliikkeen_tilaustenksittely.html)
 
 
+## Näkymiä
+* [Ylläpitäjä: tuotteet](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tuotteet_yp) - listaus-, esittely- ja muokkaussivut
+* [Ylläpitäjä: asiakkaat](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/asiakkaat) - listaus- ja esittelysivut
+
 ## Näkymäsuunnitelmia
 * [Etusivu](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/etusivu)
 * [Ylläpitäjä: yksittäinen asiakas](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/asiakas)

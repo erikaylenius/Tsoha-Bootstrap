@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Asiakkaat</h1>
+
+  <p>
+    Valitse asiakas nähdäksesi yhteystiedot ja tilaushistorian.
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Tunnus</th>
+        <th>Tilauskielto</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Asiakkaat listana -->
+      {% for asiakas in asiakkaat %}
+      <tr>
+        <td><a href="{{base_path}}/asiakkaat/{{asiakas.id}}">{{asiakas.nimi}}</a></td>
+        <td>{{asiakas.tunnus}}</td>
+        <td>{{asiakas.tilauskielto}}</td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

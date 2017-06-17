@@ -1,19 +1,17 @@
 <?php
+  
+  // Kirjautumissivu
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    UserController::index();
+  });
+
+  $routes->post('/', function() {
+    UserController::handle_login();
   });
 
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
-  });
-
-  $routes->get('/asiakkaat', function() {
-    HelloWorldController::asiakkaat();
-  });
-
-  $routes->get('/asiakas', function() {
-    HelloWorldController::asiakas();
   });
 
   $routes->get('/etusivu', function() {
@@ -50,7 +48,7 @@
   });   
 
   // Tuotteen lisääminen tietokantaan
-  $routes->post('/tuotteet_yp/uusituote', function(){
+  $routes->post('/tuotteet_yp', function(){
     TuoteController::store();
   });
 
@@ -69,12 +67,23 @@
     TuoteController::edit($id);
   });
 
-  $routes->post('/tuotteet_yp/:id/edit', function($id){
+  $routes->post('/tuoteet_yp/:id/edit', function($id){
     // Tuotteen muokkaaminen
-    TuoteController::update($id);
+    TuoteController::paivita($id);
   });
 
   $routes->post('/tuotteet_yp/:id/destroy', function($id){
     // Tuotteen poisto
     TuoteController::destroy($id);
+  });
+
+
+  // Asiakkaat
+
+  $routes->get('/asiakkaat', function() {
+    AsiakasController::index();
+  });
+
+  $routes->get('/asiakkaat/:id', function($id) {
+    AsiakasController::show($id);
   });

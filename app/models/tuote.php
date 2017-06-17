@@ -8,18 +8,30 @@
 		}
 
 		public function save(){
-			$query = DB::connection()->prepare('INSERT INTO Tuote VALUES ($this->id, $this->nimike, $this->hinta, $this->kuvaus, $this->varastosaldo, $this->halytyssaldo)');
-			$query->execute;
+      $query = DB::connection()->prepare('INSERT INTO Tuote (nimike, hinta, kuvaus, varastosaldo, halytyssaldo) VALUES (:nimike, :hinta, :kuvaus, :varastosaldo, :halytyssaldo) RETURNING id');
+      $query->execute(array('nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus, 'varastosaldo' => $this->varastosaldo, 'halytyssaldo' => $this->halytyssaldo));
+      $row = $query->fetch();
+      $this->id = $row['id'];
+
+
 		}
 
     public function update(){
-      $query = DB::connection()->prepare('UPDATE Tuote VALUES ($this->id, $this->nimike, $this->hinta, $this->kuvaus, $this->varastosaldo, $this->halytyssaldo)');
-      $query->execute;
+      /*
+      $query = DB::connection()->prepare('UPDATE Tuote SET (nimike, hinta, kuvaus, varastosaldo, halytyssaldo) VALUES (:nimike, :hinta, :kuvaus, :varastosaldo, :halytyssaldo) RETURNING id');
+      $query->execute(array('nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus, 'varastosaldo' => $this->varastosaldo, 'halytyssaldo' => $this->halytyssaldo));
+      $row = $query->fetch();
+      $this->id = $row['id'];
+      */
+      $query = DB::connection()->prepare('UPDATE Tuote SET nimike = :nimike, hinta = :hinta, kuvaus = :kuvaus, varastosaldo = :varastosaldo, halytyssaldo = :halytyssaldo WHERE id = :id');
+            $query->execute(array('nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus, 'varastosaldo' => $this->varastosaldo, 'halytyssaldo' => $this->halytyssaldo));
+                  $row = $query->fetch();
+      $this->id = $row['id'];
     }
 
     public function destroy(){
-      $query = DB::connection()->prepare('DESTROY Tuote VALUES ($this->id, $this->nimike, $this->hinta, $this->kuvaus, $this->varastosaldo, $this->halytyssaldo)');
-      $query->execute;
+      $query = DB::connection()->prepare('DELETE FROM Tuote WHERE id = :id');
+      $query->execute(array('id' => $this->id));
     }
 
 		public static function all(){
