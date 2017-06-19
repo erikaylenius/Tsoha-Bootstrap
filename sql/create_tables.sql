@@ -30,3 +30,9 @@ CREATE TABLE Tilatut(
 	tuote_id INTEGER REFERENCES Tuote(id),
 	lkm INTEGER NOT NULL CHECK (lkm > 0)
 );
+
+CREATE TABLE Yllapito(
+	id SERIAL PRIMARY KEY,
+	tunnus varchar(10) NOT NULL,
+	salasana varchar(20) NOT NULL
+);

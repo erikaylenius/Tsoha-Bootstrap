@@ -15,7 +15,7 @@
   });
 
   $routes->get('/etusivu', function() {
-    HelloWorldController::etusivu();
+    UserController::index();
   });
 
   $routes->get('/omattiedot', function() {
@@ -86,4 +86,11 @@
 
   $routes->get('/asiakkaat/:id', function($id) {
     AsiakasController::show($id);
+  });
+
+
+  // Uloskirjautuminen
+
+  $routes->post('/logout', function(){
+    UserController::logout();
   });

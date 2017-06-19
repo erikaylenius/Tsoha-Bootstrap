@@ -2,10 +2,12 @@
 {% block content %}
   <h1>Tuotteet</h1>
 
-  <div class="alert alert-success">
-    {{message}}
-  </div>
-
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
+  
   <p>
     Valitse tuote, jota haluat muokata tai poistaa.
   </p>

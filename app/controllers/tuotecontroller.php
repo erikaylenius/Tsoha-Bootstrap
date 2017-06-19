@@ -2,6 +2,7 @@
 	require 'app/models/tuote.php';
 	class TuoteController extends BaseController{
 		public static function index(){
+        self::check_logged_in();
     		$tuotteet = Tuote::all();
     		View::make('tuotteet_yp/tuotteet_yp.html', array('tuotteet' => $tuotteet));
   		}
@@ -33,11 +34,20 @@
       'halytyssaldo' => $params['halytyssaldo']
     ));
 
-    // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-    $uusituote->save();
+    $errors = $uusituote->errors();
 
-    // Ohjataan käyttäjä lisäyksen jälkeen tuotteen esittelysivulle
-    Redirect::to('/tuotteet_yp', array('message' => 'Tuotteen lisääminen onnistui.'));
+    if(count($errors) == 0){
+
+      // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
+      $uusituote->save();
+
+      // Ohjataan käyttäjä lisäyksen jälkeen tuotteen esittelysivulle
+      Redirect::to('/tuotteet_yp', array('message' => 'Tuotteen lisääminen onnistui.'));
+    
+    }else{
+      // Tuoteessa vika
+      View::make('tuotteet_yp/uusituote.html', array('errors' => $errors, 'attributes' => $params));
+    }
   }  
 
 
@@ -62,21 +72,20 @@
 
     // Alustetaan Tuote-olio käyttäjän syöttämillä tiedoilla
     $muokattutuote = new Tuote($attribuutit);
-    // $errors = $tuote->errors();
+    $errors = $muokattutuote->errors();
 
-    /*
-    if(count($errors) > 0){
-      View::make('tuotteet_yp/edit.html', array('errors' => $errors, 'attribuutit' => $attribuutit));
-    }else{
-      // Kutsutaan alustetun olion update-metodia, joka päivittää tuotteen tiedot tietokannassa */
+    if(count($errors) == 0){
+
       $muokattutuote->update();
-
       Redirect::to('/tuotteet_yp/' . $muokattutuote->id, array('message' => 'Tietojen muutokset tallennettu'));
-    // }
+    } else {
+      View::make('tuotteet_yp/edit.html', array('errors' => $errors, 'tuote' => $params));
+      
+    }
   }
 
   //TUOTTEEN POISTAMINEN
-   // Pelin poistaminen
+   // Tuotteen poistaminen
   public static function destroy($id){
     // Alustetaan Tuote-olio annetulla id:llä
     $poistettava = new Tuote(array('id' => $id));

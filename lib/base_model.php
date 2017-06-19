@@ -21,9 +21,29 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        $validator_errors = $this->{$validator}();
+        $errors = array_merge($errors, $validator_errors);
       }
 
       return $errors;
     }
+
+    public function validate_string_length($string, $length){
+      $errors = array();
+      if($string == '' || $string == null){
+        $errors[] = 'Merkkijono ei saa olla tyhjä.';
+      }
+      if(strlen($string) < 2){
+        $errors[] = 'Merkkijonon pituuden on oltava yli 2 merkkiä.';
+      }
+
+      if(strlen($string) < $length){
+        $errors[] = 'Merkkijono oli liian pitkä.';
+      }
+
+      return $errors;
+    }
+
+
 
   }

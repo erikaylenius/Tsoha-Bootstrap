@@ -7,7 +7,15 @@
 
   <h1>Kirjaudu</h1>
 
-<form method="post" action="{{base_path}}/etusivu">
+  {% if message %}
+    <div class="alert alert-danger">
+      <ul>
+          <li>{{message}}</li>
+      </ul>
+    </div>
+  {% endif %}
+
+<form method="post" action="{{base_path}}/">
     <div class="form-group">
       <label>Käyttäjätunnus</label>
       <input type="text" class="form-control" name="tunnus" value="{{tunnus}}">
