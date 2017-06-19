@@ -12,7 +12,7 @@ Työn aihe mukailee hyvin pitkälti valmista aihetta, tukkuliikkeen tilaustenkä
 [Valmis aihe: Tukkuliikkeen tilaustenkäsittely](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tukkuliikkeen_tilaustenksittely.html)
 
 
-Ylläpitäjän käyttäjätunnus yp, salasana aaa.[Aloitussivu](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/).
+Ylläpitäjän käyttäjätunnus yp, salasana aaa. [Aloitussivu](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/).
 
 ## Näkymiä
 * [Ylläpitäjä: tuotteet](https://eylenius.users.cs.helsinki.fi/tilausjarjestelma/tuotteet_yp) - listaus-, esittely- ja muokkaussivut

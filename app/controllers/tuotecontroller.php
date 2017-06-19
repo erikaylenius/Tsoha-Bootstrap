@@ -8,10 +8,12 @@
   		}
 
     public static function tuote_yp(){
+      self::check_logged_in();
       View::make('tuotteet_yp/tuote_yp.html');
     }
 
   		public static function show($id){
+        self::check_logged_in();
         $tuote = Tuote::find($id);
   			View::make('tuotteet_yp/tuote_yp.html', array('tuote' => $tuote));
   		}
@@ -19,6 +21,7 @@
 //UUDEN TUOTTEEN TALLETUS
 
     public static function uusituote(){
+      self::check_logged_in();
       View::make('tuotteet_yp/uusituote.html');
     }
 
@@ -54,6 +57,7 @@
   //TUOTTEEN MUOKKAAMINEN
 
     public static function edit($id){
+      self::check_logged_in();
       $tuote = Tuote::find($id);
       View::make('tuotteet_yp/edit.html', array('tuote' => $tuote));
   }
