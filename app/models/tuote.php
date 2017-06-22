@@ -14,8 +14,6 @@
       $query->execute(array('nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus, 'varastosaldo' => $this->varastosaldo, 'halytyssaldo' => $this->halytyssaldo));
       $row = $query->fetch();
       $this->id = $row['id'];
-
-
 		}
 
     public function update(){

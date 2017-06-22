@@ -5,8 +5,7 @@ CREATE TABLE Asiakas(
     nimi varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
     osoite varchar(50) NOT NULL,
-    puh varchar(50),
-    tilauskielto boolean DEFAULT FALSE
+    puh varchar(50) NOT NULL
 );
 
 CREATE TABLE Tilaus(

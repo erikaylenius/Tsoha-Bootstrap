@@ -6,6 +6,10 @@
    	  View::make('etusivu.html');
     }
 
+    public static function yllapito(){
+      View::make('yllapito.html');
+    }
+
     public static function handle_login(){
     $params = $_POST;
     $user = User::authenticate($params['tunnus'], $params['salasana']);

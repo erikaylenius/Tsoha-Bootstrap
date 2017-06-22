@@ -7,6 +7,16 @@
   });
 
   $routes->post('/', function() {
+    AsiakasController::handle_login_asiakas();
+  });
+
+  // Ylläpidon kirjautuminen
+
+  $routes->get('/yllapito', function() {
+    UserController::yllapito();
+  });
+
+  $routes->post('/yllapito', function() {
     UserController::handle_login();
   });
 
@@ -17,10 +27,6 @@
   $routes->get('/etusivu', function() {
     UserController::index();
   });
-
-  $routes->get('/omattiedot', function() {
-    HelloWorldController::omattiedot();
-  }); 
 
   $routes->get('/rekisteroidy', function() {
     HelloWorldController::rekisteroidy();
@@ -77,6 +83,19 @@
     TuoteController::destroy($id);
   });
 
+    //Rekisteröityminen
+
+  $routes->get('/asiakkaat/rekisteroidy', function() {
+    AsiakasController::rekisteroidy();
+  });
+
+  $routes->post('/asiakkaat', function(){
+    AsiakasController::store();
+  });
+
+    $routes->get('/tervetuloa', function(){
+    AsiakasController::tervetuloa();
+  });
 
   // Asiakkaat
 
@@ -88,9 +107,30 @@
     AsiakasController::show($id);
   });
 
+  $routes->post('/asiakkaat/:id/destroy', function($id){
+    // Tuotteen poisto
+    AsiakasController::destroy($id);
+  });
+
+  // Omat tiedot
+
+  $routes->get('/omattiedot', function() {
+    AsiakasController::omattiedot();
+  });
+
+  $routes->post('/asiakkaat/:id/edit', function($id){
+    // Tuotteen muokkaaminen
+    AsiakasController::paivita($id);
+  });
+
+
 
   // Uloskirjautuminen
 
   $routes->post('/logout', function(){
     UserController::logout();
+  });
+
+  $routes->post('/logout_asiakas', function(){
+    AsiakasController::logout_asiakas();
   });
