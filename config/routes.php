@@ -28,9 +28,12 @@
     UserController::index();
   });
 
+/*
   $routes->get('/rekisteroidy', function() {
     HelloWorldController::rekisteroidy();
   }); 
+
+  */
 
   $routes->get('/tilaukset', function() {
     HelloWorldController::tilaukset();
@@ -39,6 +42,24 @@
   $routes->get('/uusitilaus', function() {
     HelloWorldController::uusitilaus();
   });
+
+
+// ASIAKAS: Tuotteet ja tilaaminen
+
+  $routes->get('/valikoima', function() {
+    TilausController::valikoima();
+  });
+
+  $routes->get('/valikoima/:id', function($id) {
+    TilausController::show($id);
+  });
+
+    $routes->post('/tilaus/:id/osta', function($id) {
+    TilausController::lisaa($id);
+  });
+
+
+
 
     $routes->get('/tuotteet_yp', function() {
     TuoteController::index();
@@ -85,11 +106,11 @@
 
     //Rekisteröityminen
 
-  $routes->get('/asiakkaat/rekisteroidy', function() {
+  $routes->get('/rekisteroidy', function() {
     AsiakasController::rekisteroidy();
   });
 
-  $routes->post('/asiakkaat', function(){
+  $routes->post('/omattiedot', function(){
     AsiakasController::store();
   });
 

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1>{{tuote.nimike}}</h1>
+
+    <div class="alert alert-success">
+    {{message}}
+  </div>
+
+  <!-- Tiedot tulee listana tähän -->
+  <ul>
+    <li><strong>Hinta:</strong> {{tuote.hinta}} </li>
+    <li><strong>Kuvaus:</strong> {{tuote.kuvaus}} </li>
+    <li><strong>Varastosaldo:</strong> {{tuote.varastosaldo}} </li>
+  </ul>
+
+  <form method="post" action="{{base_path}}/tilaus/{{tuote.id}}/osta">
+    <div class="form-group">
+      <label>Lukumäärä</label>
+      <input type="text" name="lkm" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Lisää ostoksiin</button>
+    </div>
+  </form>
+{% endblock %}

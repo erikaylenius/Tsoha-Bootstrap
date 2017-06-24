@@ -39,6 +39,19 @@
       return null;
     }
 
+    public static function get_asiakas_logged_in_id(){
+       // Katsotaan onko asiakas-avain sessiossa
+      if(isset($_SESSION['kirjautunut'])){
+        $kirjautunut_id = $_SESSION['kirjautunut'];
+        // Pyydetään User-mallilta käyttäjä session mukaisella id:llä
+        $kirjautunut = Asiakas::find($kirjautunut_id);
+
+      return $kirjautunut->id;
+    }
+
+      return null;
+    }
+
     public static function check_logged_in_asiakas(){
       if(!isset($_SESSION['kirjautunut'])){
       Redirect::to('/', array('message' => 'Kirjaudu ensin sisään.'));

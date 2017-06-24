@@ -25,7 +25,7 @@
       View::make('asiakkaat/omattiedot.html');
     }
 
-      public static function paivita($id){
+    public static function paivita($id){
     $params = $_POST;
 
     $attribuutit = array(
@@ -60,7 +60,7 @@
 
     public static function rekisteroidy(){
       // TÄHÄN: EI SAA OLLA KIRJAUTUNUT
-      View::make('tuotteet_yp/rekisteroidy.html');
+      View::make('asiakkaat/rekisteroidy.html');
     }
 
     public static function store(){
@@ -80,7 +80,7 @@
 
     // if(count($errors) == 0){
 
-      // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
+      // Kutsutaan alustamamme olion save-metodia, joka tallentaa olion tietokantaan
       $uusiasiakas->save();
 
       // Ohjataan käyttäjä lisäyksen jälkeen tuotteen esittelysivulle
@@ -114,6 +114,10 @@
     }else{
 
       $_SESSION['kirjautunut'] = $kirjautunut->id;
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!KOKEILU
+      $tilattavat = array();
+      $_SESSION['tilattavat'] = $tilattavat;
 
       Redirect::to('/', array('message' => 'Tervetuloa, ' . $kirjautunut->tunnus . '!'));
     }

@@ -12,28 +12,17 @@
     Valitse tuote, jota haluat muokata tai poistaa.
   </p>
   <p>
-    <a href="{{base_path}}/tuotteet_yp/uusituote">Lisää uusi tuote</a>
+<form method="post" action="{{base_path}}/valikoima">
+  {% for tuote in tuotteet %}
+    <div class="form-group">
+      <label>{{tuote.nimike}}</label>
+      <input type="text" name="{{tuote.id}}" class="form-control">
+    </div>
+  {% endfor %}  
+</form>
 
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Nimike</th>
-        <th>Hinta</th>
-        <th>Kuvaus</th>
-        <th>Varastosaldo</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <!-- Tuotteet listana -->
-      {% for tuote in tuotteet %}
-      <tr>
-        <td><a href="{{base_path}}/tuotteet_yp/{{tuote.id}}">{{tuote.nimike}}</a></td>
-        <td>{{tuote.hinta}}</td>
-        <td>{{tuote.kuvaus}}</td>
-        <td>{{tuote.varastosaldo}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+
+
+
 {% endblock %}
