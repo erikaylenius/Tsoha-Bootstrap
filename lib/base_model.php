@@ -28,6 +28,17 @@
       return $errors;
     }
 
+    public function validate_int($field, $int) {
+      $errors = array();
+      if(!is_int($int)) {
+        $errors[] = 'Et syöttänyt kokonaislukua.';
+      }
+      if($int < 1) {
+        $errors[] = 'Pienin sallittu lukumäärä on 1.';
+      }
+      return $errors;
+    }
+
     public function validate_string_length($string, $length){
       $errors = array();
       if($string == '' || $string == null){

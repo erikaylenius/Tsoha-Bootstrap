@@ -4,9 +4,24 @@
 
 	class TilausController extends BaseController{
 		public static function index(){
-    		$tuotteet = Tilaus::all();
+    		$tilaukset = Tilaus::all();
     		View::make('tilaus/tilaukset.html', array('tilaukset' => $tilaukset));
   		}
+
+      public static function omat(){
+        $tilaukset = Tilaus::omat(self::get_asiakas_logged_in_id());
+        View::make('tilaus/omattilaukset.html', array('tilaukset' => $tilaukset));
+      }
+
+      public static function asiakkaan_tilaukset($id){
+        $tilaukset = Tilaus::omat($id);
+        View::make('tilaus/omattilaukset.html', array('tilaukset' => $tilaukset));
+      }
+
+      public static function tilatut($id){
+        $tilatut = Tilattava::tilatut($id);
+        View::make('tilaus/tilaus.html', array('tilatut' => $tilatut));
+      }
 
     public static function tilaus(){
       View::make('tilaus/tilaus.html');
@@ -32,27 +47,21 @@
     $uusitilaus = new Tilaus(array(
       'asiakas_id' => self::get_asiakas_logged_in_id(),
       'loppusumma' => 0,
-      'maksettu' => false,
-      'pvm' => null
+      'pvm' => date('d-m-Y H:i:s')
     ));
 
       $uusitilaus->save();
 
-      /* foreach($params as $row){
-        // $tuote_id = {{tuote_id}},
-      $tilattava = new Tilattava(array(
-      'tilaus_id' => $uusitilaus->id
-      'tuote_id' => $tuote_id,
-      'lkm' => $params['{{tuote.id}}']
-    ));
+      $_SESSION['tilattavat'] = null;
+      $tilattavat = array();
+      $_SESSION['tilattavat'] = $tilattavat;
 
+    
 
-      $tilattava->save();
+      Redirect::to('/valikoima', array('message' => 'Tilaaminen onnistui'));
 
-      } */
-
-      Redirect::to('/', array('message' => 'Tilaaminen onnistui'));
-
+    } else {
+      Redirect::to('/valikoima', array('message' => 'Virhe!'));
     }
   }
 
@@ -72,7 +81,6 @@
 
       $tilattava->save();
 
-      $_SESSION['tilattavat'][] = $tilattava;
 
     
 

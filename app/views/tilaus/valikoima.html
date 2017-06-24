@@ -8,10 +8,11 @@
     </div>
   {% endif %}
   
-  <p>
-    Valitse tuote, jota haluat muokata tai poistaa.
-  </p>
-  <p>
+    <form method="post" action="{{base_path}}/tilaus/laheta" style="display: inline-block;">
+      <button type="submit" class="btn btn-danger">Lähetä tilaus</button>
+    </form>
+
+
 <table class="table table-striped table-bordered">
     <thead>
       <tr>

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Tilaukset</h1>
+  <h1>Omat tilaukset</h1>
 
 <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Tilaus</th>
-        <th>Asiakas</th>
+        <th>Loppusumma</th>
       </tr>
     </thead>
 
@@ -14,8 +14,8 @@
       <!-- Tuotteet listana -->
       {% for tilaus in tilaukset %}
       <tr>
-        <td><a href="{{base_path}}/tilaus/{{tilaus.id}}">{{tilaus.pvm}}</a></td>
-        <td>{{tilaus.asiakas_nimi}}</a></td>
+        <td><a href="{{base_path}}/tilaus/{{tilaus.id}}">{{tilaus.id}}</a></td>
+        <td>{{tilaus.loppusumma}}</a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -35,9 +35,6 @@
 
   */
 
-  $routes->get('/tilaukset', function() {
-    HelloWorldController::tilaukset();
-  });
 
   $routes->get('/uusitilaus', function() {
     HelloWorldController::uusitilaus();
@@ -56,6 +53,25 @@
 
     $routes->post('/tilaus/:id/osta', function($id) {
     TilausController::lisaa($id);
+  });
+
+  $routes->post('/tilaus/laheta', function() {
+    TilausController::store();
+  });
+
+    $routes->get('/tilaukset/omat', function() {
+    TilausController::omat();
+  });
+
+
+// TILAUKSEN TUOTELISTA
+
+  $routes->get('/tilaus/:id', function($id) {
+    TilausController::tilatut($id);
+  });
+// KAIKKI TILAUKSET
+    $routes->get('/tilaukset', function() {
+    TilausController::index();
   });
 
 

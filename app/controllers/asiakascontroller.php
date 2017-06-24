@@ -16,7 +16,8 @@
   		public static function show($id){
         self::check_logged_in();
         $asiakas = Asiakas::find($id);
-  			View::make('asiakkaat/asiakas.html', array('asiakas' => $asiakas));
+        $tilaukset = Tilaus::omat($id);
+  			View::make('asiakkaat/asiakas.html', array('asiakas' => $asiakas, 'tilaukset' => $tilaukset));
   		}
 
       // Omat tiedot
@@ -115,7 +116,6 @@
 
       $_SESSION['kirjautunut'] = $kirjautunut->id;
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!KOKEILU
       $tilattavat = array();
       $_SESSION['tilattavat'] = $tilattavat;
 
@@ -125,6 +125,7 @@
 
     public static function logout_asiakas(){
       $_SESSION['kirjautunut'] = null;
+      $_SESSION['tilattavat'] = null;
       Redirect::to('/', array('message' => 'Olet kirjautunut ulos!'));
     }  
 

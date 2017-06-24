@@ -12,9 +12,7 @@ CREATE TABLE Tilaus(
 	id SERIAL PRIMARY KEY,
 	asiakas_id INTEGER REFERENCES Asiakas(id),
 	loppusumma decimal NOT NULL,
-	maksettu boolean DEFAULT FALSE,
 	pvm DATE
-
 );
 
 CREATE TABLE Tuote(

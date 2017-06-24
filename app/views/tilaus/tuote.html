@@ -3,9 +3,11 @@
 
   <h1>{{tuote.nimike}}</h1>
 
+  {% if messafe %}
     <div class="alert alert-success">
     {{message}}
   </div>
+  {% endif %}
 
   <!-- Tiedot tulee listana tähän -->
   <ul>
