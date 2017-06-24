@@ -40,6 +40,8 @@
     public static function store(){
 
       $params = $_POST;
+
+      if (!empty($_SESSION['tilattavat'])) {
   if (isset($_SESSION['kirjautunut'])) {
 
     $asiakas = self::get_asiakas_logged_in();
@@ -63,6 +65,10 @@
     } else {
       Redirect::to('/valikoima', array('message' => 'Virhe!'));
     }
+
+  } else {
+    Redirect::to('/valikoima', array('message' => 'Et ole valinnut yhtäkään tuotetta.'));
+  }
   }
 
   public static function lisaa($id){
@@ -79,17 +85,22 @@
 
     ));
 
-      $tilattava->save();
+
+      $errors = $tilattava->errors();
+
+      if(count($errors) == 0){
+        $tilattava->save();
 
 
     
 
       Redirect::to('/valikoima', array('message' => 'Tuote lisätty.'));
     } else {
-      Redirect::to('/valikoima', array('message' => 'Et ole kirjautunut sisään.'));
+      Redirect::to('/valikoima', array('errors' => $errors));
     }
 
     }
+  }
 /*
     if (isset($_SESSION['tilattavat'])) {
       foreach($_SESSION['tilattavat'] as $tilattava) {

@@ -6,6 +6,8 @@
 		public function __construct($attributes){
 			parent::__construct($attributes);
 
+      $this->validators = array('validate_lkm');
+
 		}
 
 		public function save(){
@@ -43,6 +45,21 @@
 
       return null;
       }
+
+
+    // Validointi
+
+      public function validate_lkm() {
+      $errors = array();
+      if(!is_numeric($this->lkm)) {
+        $errors[] = 'Et syöttänyt lukua.';
+      }
+
+      if($this->lkm < 1) {
+        $errors[] = 'Sinun on tilattava vähintään 1 kpl.';
+      }
+      return $errors;
+    }
 
       /*
       public static function tilatut($tilaus_id){
