@@ -25,11 +25,6 @@
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
-/*
-  $routes->get('/etusivu', function() {
-    UserController::index();
-  });
-*/
 
 
 // ASIAKAS: Tuotteet ja tilaaminen
@@ -66,7 +61,7 @@
   });
 
 
-
+// KAIKKI TUOTTEET
 
     $routes->get('/tuotteet_yp', function() {
     TuoteController::index();
