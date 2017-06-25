@@ -39,20 +39,28 @@
       return $errors;
     }
 
-    public function validate_string_length($string, $length){
+    public function validate_string_length($kentta, $string, $min, $max){
       $errors = array();
       if($string == '' || $string == null){
-        $errors[] = 'Merkkijono ei saa olla tyhjä.';
+        $errors[] = $kentta . '-kentän merkkijono ei saa olla tyhjä.';
       }
-      if(strlen($string) < 2){
-        $errors[] = 'Merkkijonon pituuden on oltava yli 2 merkkiä.';
+      if(strlen($string) < $min){
+        $errors[] = $kentta . '-kentän merkkijonon pituuden on oltava yli ' . $min . ' merkkiä.';
       }
 
-      if(strlen($string) < $length){
-        $errors[] = 'Merkkijono oli liian pitkä.';
+      if(strlen($string) > $max){
+        $errors[] = $kentta . '-kentän merkkijono oli liian pitkä.';
       }
 
       return $errors;
+    }
+
+    public function validate_kirjaimet($kentta, $string) {
+        $errors = array();
+        if (preg_match("/[^A-Za-z\å\ä\ö\Å\Ä\Ö\' '\-]/", $string)) {
+            $errors[] = $kentta . "-kenttä sisälsi vääränlaisia merkkejä.";
+        }
+        return $errors;
     }
 
 

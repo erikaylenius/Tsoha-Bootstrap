@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Omat tiedot</h1>
+  <h1>Omat tiedot: {{asiakas_logged_in.tunnus}}</h1>
 
     {% if errors %}
     <div class="alert alert-danger">
@@ -10,7 +10,7 @@
         {% endfor %}
       </ul>
     </div>
-  {% endif %}
+    {% endif %}
 
     {% if message %}
     <div class="alert alert-danger">
@@ -18,42 +18,42 @@
           <li>{{message}}</li>
       </ul>
     </div>
-  {% endif %}
+    {% endif %}
   
-  <form method="post" action="{{base_path}}/asiakkaat/{{asiakas_logged_in.id}}/edit">
+    <form method="post" action="{{base_path}}/asiakkaat/{{asiakas_logged_in.id}}/edit">
 
-    <div class="form-group">
-      <label>Käyttäjätunnus</label>
-      <input type="text" name="tunnus" class="form-control" value="{{asiakas_logged_in.tunnus}}">
-    </div>
+       <div class="form-group">
+        <label>Käyttäjätunnus</label>
+        <input type="text" name="tunnus" class="form-control" value="{{asiakas_logged_in.tunnus}}">
+      </div>
 
-    <div class="form-group">
-      <label>Salasana</label>
-      <input type="text" name="salasana" class="form-control" value="{{asiakas_logged_in.salasana}}">
-    </div>
+      <div class="form-group">
+        <label>Salasana</label>
+        <input type="text" name="salasana" class="form-control" value="{{asiakas_logged_in.salasana}}">
+      </div>
 
-    <div class="form-group">
-      <label>Nimi</label>
-      <input type="text" name="nimi" class="form-control" value="{{asiakas_logged_in.nimi}}">
-    </div>
+      <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" name="nimi" class="form-control" value="{{asiakas_logged_in.nimi}}">
+      </div>
 
-    <div class="form-group">
-      <label>E-mail</label>
-      <input type="text" name="email" class="form-control" value="{{asiakas_logged_in.email}}">
-    </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="text" name="email" class="form-control" value="{{asiakas_logged_in.email}}">
+      </div>
 
-    <div class="form-group">
-      <label>Toimitusosoite</label>
-      <input type="text" name="osoite" class="form-control" value="{{asiakas_logged_in.osoite}}">
-    </div>
+      <div class="form-group">
+        <label>Toimitusosoite</label>
+        <input type="text" name="osoite" class="form-control" value="{{asiakas_logged_in.osoite}}">
+      </div>
 
-    <div class="form-group">
-      <label>Puhelinnumero</label>
-      <input type="text" name="puh" class="form-control" value="{{asiakas_logged_in.puh}}">
-    </div>
+      <div class="form-group">
+        <label>Puhelinnumero</label>
+        <input type="text" name="puh" class="form-control" value="{{asiakas_logged_in.puh}}">
+      </div>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
-    </div>
-  </form>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+      </div>
+    </form>
 {% endblock %}

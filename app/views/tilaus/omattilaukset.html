@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Omat tilaukset</h1>
+  {% if message %}
+    <div class="alert alert-success">
+    {{message}}
+  </div>
+  {% endif %}
+  <p> Valitse tilaus tarkastellaksesi siihen sisältyviä tuotteita. </p>
 
 <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Tilaus</th>
-        <th>Loppusumma</th>
+        <th>Tilausnumero</th>
+        <th>Päivämäärä</th>
+        <th>Loppusumma (€)</th>
       </tr>
     </thead>
 
@@ -15,6 +22,7 @@
       {% for tilaus in tilaukset %}
       <tr>
         <td><a href="{{base_path}}/tilaus/{{tilaus.id}}">{{tilaus.id}}</a></td>
+        <td>{{tilaus.pvm}}</td>
         <td>{{tilaus.loppusumma}}</a></td>
       </tr>
       {% endfor %}

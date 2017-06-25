@@ -3,7 +3,7 @@
 
   <h1>{{tuote.nimike}}</h1>
 
-  {% if messafe %}
+  {% if message %}
     <div class="alert alert-success">
     {{message}}
   </div>
@@ -11,9 +11,8 @@
 
   <!-- Tiedot tulee listana tähän -->
   <ul>
-    <li><strong>Hinta:</strong> {{tuote.hinta}} </li>
+    <li><strong>Hinta (€):</strong> {{tuote.hinta}} </li>
     <li><strong>Kuvaus:</strong> {{tuote.kuvaus}} </li>
-    <li><strong>Varastosaldo:</strong> {{tuote.varastosaldo}} </li>
   </ul>
 
   <form method="post" action="{{base_path}}/tilaus/{{tuote.id}}/osta">

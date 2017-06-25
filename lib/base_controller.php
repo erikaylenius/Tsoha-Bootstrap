@@ -43,7 +43,7 @@
        // Katsotaan onko asiakas-avain sessiossa
       if(isset($_SESSION['kirjautunut'])){
         $kirjautunut_id = $_SESSION['kirjautunut'];
-        // Pyydetään User-mallilta käyttäjä session mukaisella id:llä
+        // Pyydetään Asiakas-mallilta käyttäjä session mukaisella id:llä
         $kirjautunut = Asiakas::find($kirjautunut_id);
 
       return $kirjautunut->id;

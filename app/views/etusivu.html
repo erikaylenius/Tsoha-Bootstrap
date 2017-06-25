@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
   
+   {% if asiakas_logged_in is empty and user_logged_in is empty %}
+
   <p>
-    Ei tunnuksia? <a href="#"> Rekisteröidy</a>
+    Ei tunnuksia? <a href="{{base_path}}/rekisteroidy"> Rekisteröidy</a> päästäksesi tutkimaan valikoimaa ja tilaamaan.
   </p>
 
   <h1>Kirjaudu</h1>
 
   {% if message %}
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
       <ul>
           <li>{{message}}</li>
       </ul>
@@ -28,4 +30,35 @@
 
     <button type="submit" class="btn btn-primary">Kirjaudu</button>
   </form>
+
+  {% endif %}
+
+  {% if asiakas_logged_in %}
+    
+      {% if message %}
+      <div class="alert alert-success">
+        <ul>
+            <li>{{message}}</li>
+        </ul>
+      </div>
+    {% endif %}    
+
+    <p> Pääset tutkimaan tuotetarjontaa valikoima-osiossa. Klikkaa tuotetta päästäksesi valitsemaan haluamasi määrän ja lisäämään sen ostoksiisi. Kun olet valmis, paina lähetä tilaus -painiketta. </p>
+
+  {% endif %}
+
+    {% if user_logged_in %}
+    
+      {% if message %}
+      <div class="alert alert-success">
+        <ul>
+            <li>{{message}}</li>
+        </ul>
+      </div>
+    {% endif %}    
+    
+    <p> Valitse osio, jota haluat tarkastella. </p>
+
+  {% endif %}
+
 {% endblock %}

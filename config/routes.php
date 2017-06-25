@@ -125,39 +125,48 @@
     AsiakasController::tervetuloa();
   });
 
-  // Asiakkaat
+// ASIAKKAAT
+
+  // Asiakaslistaus 
 
   $routes->get('/asiakkaat', function() {
     AsiakasController::index();
   });
 
+  // Yksittäisen asiakkaan tiedot
+
   $routes->get('/asiakkaat/:id', function($id) {
     AsiakasController::show($id);
   });
 
+  // Asiakkaan poistaminen
+
   $routes->post('/asiakkaat/:id/destroy', function($id){
-    // Tuotteen poisto
     AsiakasController::destroy($id);
   });
 
-  // Omat tiedot
+  // KIRJAUTUNUT ASIAKAS: Omat tiedot
 
   $routes->get('/omattiedot', function() {
     AsiakasController::omattiedot();
   });
 
+  // KIRJAUTUNUT ASIAKAS: Omien tietojen muokkaaminen
+
   $routes->post('/asiakkaat/:id/edit', function($id){
-    // Tuotteen muokkaaminen
     AsiakasController::paivita($id);
   });
 
 
+// ULOSKIRJAUTUMINEN
 
-  // Uloskirjautuminen
+  // Ylläpitäjä
 
   $routes->post('/logout', function(){
     UserController::logout();
   });
+
+  // Asiakas
 
   $routes->post('/logout_asiakas', function(){
     AsiakasController::logout_asiakas();

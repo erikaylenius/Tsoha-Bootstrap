@@ -2,10 +2,13 @@
 {% block content %}
   <h1>Tilaukset</h1>
 
+  <p> Valitse tilaus tarkastellaksesi siihen sisältyvää tuotelistaa. </p>
+
 <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Tilaus</th>
+        <th>Päivämäärä</th>
         <th>Asiakas</th>
         <th>Loppusumma</th>
       </tr>
@@ -15,8 +18,9 @@
       <!-- Tuotteet listana -->
       {% for tilaus in tilaukset %}
       <tr>
-        <td><a href="{{base_path}}/tilaus/{{tilaus.id}}">{{tilaus.pvm}}</a></td>
-        <td>{{tilaus.asiakas_nimi}}</td>
+        <td><a href="{{base_path}}/tilaus/{{tilaus.id}}">{{tilaus.id}}</a></td>
+        <td>{{tilaus.pvm}}</td>
+        <td><a href="{{base_path}}/asiakkaat/{{tilaus.asiakas_id}}">{{tilaus.asiakas_nimi}}</a></td>
         <td>{{tilaus.loppusumma}}</td>
       </tr>
       {% endfor %}

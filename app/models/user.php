@@ -7,7 +7,7 @@
 			parent::__construct($attributes);
 		}
 
-
+    // Ylläpitäjän kirjautuminen
     public static function authenticate($tunnus, $salasana) {
 
       $query = DB::connection()->prepare('SELECT * FROM Yllapito WHERE tunnus = :tunnus AND salasana = :salasana LIMIT 1');  
@@ -31,23 +31,23 @@
 
     }
 
-      public static function find($id){
-        $query = DB::connection()->prepare('SELECT * FROM Yllapito WHERE id = :id LIMIT 1');
-        $query->execute(array('id' => $id));
-        $row = $query->fetch();
+    public static function find($id){
+      $query = DB::connection()->prepare('SELECT * FROM Yllapito WHERE id = :id LIMIT 1');
+      $query->execute(array('id' => $id));
+      $row = $query->fetch();
 
-        if($row){
-            $user = new User(array(
-              'id' => $row['id'],
-              'tunnus' => $row['tunnus'],
-              'salasana' => $row['salasana']
-            ));
+      if($row){
+          $user = new User(array(
+            'id' => $row['id'],
+            'tunnus' => $row['tunnus'],
+            'salasana' => $row['salasana']
+          ));
 
-          return $user;
+        return $user;
 
-        } else {
-          return null;
-        }
+      } else {
+        return null;
+      }
     }    
 
 	}

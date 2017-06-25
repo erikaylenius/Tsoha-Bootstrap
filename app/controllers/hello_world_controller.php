@@ -17,8 +17,4 @@
       Kint::dump($tuote);
     }
 
-    public static function uusituote(){
-      View::make('tuotteet_yp/uusituote.html');
-    }
-
   }

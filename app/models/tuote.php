@@ -1,25 +1,25 @@
 <?php
 
 	class Tuote extends BaseModel{
-		public $id, $nimike, $hinta, $kuvaus, $varastosaldo, $halytyssaldo;
+		public $id, $nimike, $hinta, $kuvaus;
 
 		public function __construct($attributes){
 			parent::__construct($attributes);
 
-      $this->validators = array('validate_nimike', 'validate_hinta', 'validate_kuvaus', 'validate_saldot');
+      $this->validators = array('validate_nimike', 'validate_hinta', 'validate_kuvaus');
 		}
 
 		public function save(){
-      $query = DB::connection()->prepare('INSERT INTO Tuote (nimike, hinta, kuvaus, varastosaldo, halytyssaldo) VALUES (:nimike, :hinta, :kuvaus, :varastosaldo, :halytyssaldo) RETURNING id');
-      $query->execute(array('nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus, 'varastosaldo' => $this->varastosaldo, 'halytyssaldo' => $this->halytyssaldo));
+      $query = DB::connection()->prepare('INSERT INTO Tuote (nimike, hinta, kuvaus) VALUES (:nimike, :hinta, :kuvaus) RETURNING id');
+      $query->execute(array('nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus));
       $row = $query->fetch();
       $this->id = $row['id'];
 		}
 
     public function update(){
 
-      $query = DB::connection()->prepare('UPDATE Tuote SET nimike = :nimike, hinta = :hinta, kuvaus = :kuvaus, varastosaldo = :varastosaldo, halytyssaldo = :halytyssaldo WHERE id = :id');
-            $query->execute(array('id' => $this->id, 'nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus, 'varastosaldo' => $this->varastosaldo, 'halytyssaldo' => $this->halytyssaldo));
+      $query = DB::connection()->prepare('UPDATE Tuote SET nimike = :nimike, hinta = :hinta, kuvaus = :kuvaus WHERE id = :id');
+      $query->execute(array('id' => $this->id, 'nimike' => $this->nimike, 'hinta' => $this->hinta, 'kuvaus' => $this->kuvaus));
     }
 
     public function destroy(){
@@ -39,9 +39,7 @@
         		'id' => $row['id'],
         		'nimike' => $row['nimike'],
         		'hinta' => $row['hinta'],
-        		'kuvaus' => $row['kuvaus'],
-        		'varastosaldo' => $row['varastosaldo'],
-        		'halytyssaldo' => $row['halytyssaldo'],
+        		'kuvaus' => $row['kuvaus']
       			));
     		}
     		return $tuotteet;
@@ -57,9 +55,7 @@
         			'id' => $row['id'],
         			'nimike' => $row['nimike'],
         			'hinta' => $row['hinta'],
-        			'kuvaus' => $row['kuvaus'],
-        			'varastosaldo' => $row['varastosaldo'],
-        			'halytyssaldo' => $row['halytyssaldo'],
+        			'kuvaus' => $row['kuvaus']
       			));
 
       		return $tuote;
@@ -72,17 +68,7 @@
 
       public function validate_nimike(){
         $errors = array();
-        if($this->nimike == '' || $this->nimike == null){
-        $errors[] = 'Nimike-kenttä oli tyhjä.';
-      }
-
-      if(strlen($this->nimike) < 2){
-        $errors[] = 'Nimike-kentän pituuden tulee olla yli 2 merkkiä.';
-      }
-
-      if(strlen($this->nimike) > 20){
-        $errors[] = 'Nimike-kentän pituus saa olla korkeintaan 20 merkkiä.';
-      }
+        $errors = array_merge($errors, parent::validate_string_length('Nimike', $this->nimike, 2, 50));
 
       return $errors;
     }
@@ -90,36 +76,14 @@
     public function validate_hinta(){
       $errors = array();
       if(!is_numeric($this->hinta)){
-        $errors[] = 'Ilmoita hinta numerona.';
+        $errors[] = 'Ilmoita hinta numerona, käytä desimaalierottimena pistettä.';
       }  
         return $errors;    
     }
 
     public function validate_kuvaus(){
-        $errors = array();
-        if($this->kuvaus == '' || $this->kuvaus == null){
-        $errors[] = 'Kuvaus-kenttä oli tyhjä.';
-      }
-
-      if(strlen($this->kuvaus) < 2){
-        $errors[] = 'Kuvaus-kentän pituuden tulee olla yli 2 merkkiä.';
-      }
-
-      if(strlen($this->kuvaus) > 100){
-        $errors[] = 'Kuvaus-kentän pituus saa olla korkeintaan 20 merkkiä.';
-      }
-
-      return $errors;
-    }
-
-    public function validate_saldot(){
       $errors = array();
-      if(is_int($this->varastosaldo)){
-        $errors[] = 'Varastosaldon on oltava kokonaisluku.';
-      }
-      if(is_int($this->halytyssaldo)){
-        $errors[] = 'Hälytyssaldon on oltava kokonaisluku.';
-      }
+      $errors = array_merge($errors, parent::validate_string_length('Kuvaus', $this->kuvaus, 2, 200));
 
       return $errors;
     }

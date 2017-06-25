@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{tuote.nimike}}</h1>
+  <!-- Painikkeet tähän -->
+  <p>
+    <form method="post" action="{{base_path}}/tuotteet_yp/{{tuote.id}}/destroy" style="display: inline-block;">
+      <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+    <a href="{{base_path}}/tuotteet_yp/{{tuote.id}}/edit" class="btn btn-default">Muokkaa</a>
+  </p>
+
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+  </div>
+  {% endif %}
+  <!-- Tiedot tulee listana tähän -->
+  <ul>
+    <li><strong>Kappalehinta (€):</strong> {{tuote.hinta}} </li>
+    <li><strong>Kuvaus:</strong> {{tuote.kuvaus}} </li>
+  </ul>
+{% endblock %}

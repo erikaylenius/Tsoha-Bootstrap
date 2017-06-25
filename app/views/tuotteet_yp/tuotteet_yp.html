@@ -18,10 +18,8 @@
     <thead>
       <tr>
         <th>Nimike</th>
-        <th>Hinta</th>
+        <th>Kappalehinta, €</th>
         <th>Kuvaus</th>
-        <th>Varastosaldo</th>
-        <th>Hälytyssaldo</th>
       </tr>
     </thead>
 
@@ -32,8 +30,6 @@
         <td><a href="{{base_path}}/tuotteet_yp/{{tuote.id}}">{{tuote.nimike}}</a></td>
         <td>{{tuote.hinta}}</td>
         <td>{{tuote.kuvaus}}</td>
-        <td>{{tuote.varastosaldo}}</td>
-        <td>{{tuote.halytyssaldo}}</td>
       </tr>
       {% endfor %}
     </tbody>

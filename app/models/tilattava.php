@@ -7,7 +7,6 @@
 			parent::__construct($attributes);
 
       $this->validators = array('validate_lkm');
-
 		}
 
 		public function save(){
@@ -18,27 +17,28 @@
 
       $_SESSION['tilattavat'][] = $this->id;
 
-
 		}
 
+
+    // Kun luodaan uusi tilaus, päivitetään samalla Tilattava-olion tilaus_id ja yhdistetään Tilattava kyseiseen tilaukseen.
     public function liita_tilaukseen($id){
 
       $query = DB::connection()->prepare('UPDATE Tilattava SET tilaus_id = :tilaus_id WHERE id = :id');
             $query->execute(array('id' => $this->id, 'tilaus_id' => $id));
     }
 
-      public static function find($id){
-        $query = DB::connection()->prepare('SELECT * FROM Tilattava WHERE id = :id LIMIT 1');
-        $query->execute(array('id' => $id));
-        $row = $query->fetch();
+    public static function find($id){
+      $query = DB::connection()->prepare('SELECT * FROM Tilattava WHERE id = :id LIMIT 1');
+      $query->execute(array('id' => $id));
+      $row = $query->fetch();
 
-        if($row){
-            $tilattava = new Tilattava(array(
-              'id' => $row['id'],
-              'tilaus_id' => $row['tilaus_id'],
-              'tuote_id' => $row['tuote_id'],
-              'lkm' => $row['lkm'],
-            ));
+      if($row){
+          $tilattava = new Tilattava(array(
+            'id' => $row['id'],
+            'tilaus_id' => $row['tilaus_id'],
+            'tuote_id' => $row['tuote_id'],
+            'lkm' => $row['lkm'],
+          ));
 
           return $tilattava;
         }
@@ -47,7 +47,7 @@
       }
 
 
-    // Validointi
+    // Lukumäärän validointi
 
       public function validate_lkm() {
       $errors = array();
@@ -61,70 +61,25 @@
       return $errors;
     }
 
-      /*
-      public static function tilatut($tilaus_id){
+    // Tiettyyn tilaukseen liittyvien tuotteiden listaaminen
+    public static function tilatut($tilaus_id){
     
-        $query = DB::connection()->prepare('SELECT * FROM Tilattava WHERE tilaus_id = :tilaus_id');
+      $query = DB::connection()->prepare('SELECT Tilattava.id, Tilattava.tilaus_id, Tilattava.tuote_id, Tilattava.lkm, Tuote.nimike as tuote_nimike FROM Tilattava LEFT JOIN Tuote ON Tilattava.tuote_id = Tuote.id WHERE tilaus_id = :tilaus_id');
         $query->execute(array('tilaus_id' => $tilaus_id));
         $rows = $query->fetchAll();
         $tilatut = array();
 
-        foreach($rows as $row){
-            $tilatut[] = new Tilattava(array(
-            'id' => $row['id'],
-            'tilaus_id' => $row['tilaus_id'],
-            'tuote_id' => $row['tuote_id'],
-            'lkm' => $row['lkm'],
-            ));
-        }
-
-        return $tilatut;
-      } */
-
-        public static function tilatut($tilaus_id){
-    
-        $query = DB::connection()->prepare('SELECT Tilattava.id, Tilattava.tilaus_id, Tilattava.tuote_id, Tilattava.lkm, Tuote.nimike as tuote_nimike FROM Tilattava LEFT JOIN Tuote ON Tilattava.tuote_id = Tuote.id WHERE tilaus_id = :tilaus_id');
-        $query->execute(array('tilaus_id' => $tilaus_id));
-        $rows = $query->fetchAll();
-        $tilatut = array();
-
-        foreach($rows as $row){
-            $tilatut[] = array(
-            'id' => $row['id'],
-            'tilaus_id' => $row['tilaus_id'],
-            'tuote_id' => $row['tuote_id'],
-            'lkm' => $row['lkm'],
-            'tuote_nimike' => $row['tuote_nimike']
-            );
-        }
-
-        return $tilatut;
+      foreach($rows as $row){
+        $tilatut[] = array(
+          'id' => $row['id'],
+          'tilaus_id' => $row['tilaus_id'],
+          'tuote_id' => $row['tuote_id'],
+          'lkm' => $row['lkm'],
+          'tuote_nimike' => $row['tuote_nimike']
+        );
       }
 
-      /*
-                public static function all(){
-    
-        $query = DB::connection()->prepare('SELECT Tilaus.id, Tilaus.asiakas_id, Tilaus.loppusumma, Tilaus.pvm, Asiakas.nimi AS asiakas_nimi FROM Tilaus INNER JOIN Asiakas ON Tilaus.asiakas_id = Asiakas.id');
-        $query->execute();
-        $rows = $query->fetchAll();
-        $tilaukset = array();
-
-        foreach($rows as $row){
-            $tilaukset[] = array(
-    
-                  'id' => $row['id'],
-                    'asiakas_id' => $row['asiakas_id'],
-                  'loppusumma' => $row['loppusumma'],
-                  'pvm' => $row['pvm'],
-                  'asiakas_nimi' => $row['asiakas_nimi']
-                
-              );
-        }
-
-        return $tilaukset;
-      }
-      */
-
-
+      return $tilatut;
+    }
 
 	}
