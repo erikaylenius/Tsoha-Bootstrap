@@ -16,7 +16,15 @@
       		foreach($_SESSION['tilattavat'] as $tilattava){
         		$lisattava = Tilattava::find($tilattava);
 
+        		// Päivitetään tilattavan tilaus_id
         		$lisattava->liita_tilaukseen($this->id);
+
+
+        		//Päivitetään tilauksen loppusumma
+        		$tuote_id = $lisattava->tuote_id;
+        		$tuote = Tuote::find($tuote_id);
+        		$plus = $tuote->hinta * $lisattava->lkm;
+        		$this->lisaa_loppusummaan($plus);
     		
     	}
 
@@ -27,10 +35,11 @@
             $query->execute(array('id' => $this->id, 'asiakas_id' => $this->asiakas_id, 'loppusumma' => $this->loppusumma, 'maksettu' => $this->maksettu, 'pvm' => $this->pvm));
     }
 
-        public function lisaa_loppusummaan($id){
+        public function lisaa_loppusummaan($plus){
 
+        	$paivitetty = $this->loppusumma + $plus;
       		$query = DB::connection()->prepare('UPDATE Tilaus SET loppusumma = :loppusumma WHERE id = :id');
-            $query->execute(array('id' => $this->id, 'loppusumma' => $id));
+            $query->execute(array('id' => $this->id, 'loppusumma' => $paivitetty));
     }
 
     	/*

@@ -20,25 +20,16 @@
     UserController::handle_login();
   });
 
+
+
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
-
+/*
   $routes->get('/etusivu', function() {
     UserController::index();
   });
-
-/*
-  $routes->get('/rekisteroidy', function() {
-    HelloWorldController::rekisteroidy();
-  }); 
-
-  */
-
-
-  $routes->get('/uusitilaus', function() {
-    HelloWorldController::uusitilaus();
-  });
+*/
 
 
 // ASIAKAS: Tuotteet ja tilaaminen

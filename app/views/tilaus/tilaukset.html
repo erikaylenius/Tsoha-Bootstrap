@@ -7,6 +7,7 @@
       <tr>
         <th>Tilaus</th>
         <th>Asiakas</th>
+        <th>Loppusumma</th>
       </tr>
     </thead>
 
@@ -15,7 +16,8 @@
       {% for tilaus in tilaukset %}
       <tr>
         <td><a href="{{base_path}}/tilaus/{{tilaus.id}}">{{tilaus.pvm}}</a></td>
-        <td>{{tilaus.asiakas_nimi}}</a></td>
+        <td>{{tilaus.asiakas_nimi}}</td>
+        <td>{{tilaus.loppusumma}}</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -39,9 +39,9 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-
+            {% if asiakas_logged_in is empty and user_logged_in is empty %}
               <li><a href="{{base_path}}/yllapito">Ylläpito</a></li>
-
+            {% endif %}
 
             {% if user_logged_in %}
             <li><a href="{{base_path}}/tuotteet_yp">Tuotteet</a></li>
@@ -71,6 +71,7 @@
       <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}
     </div>
+       
 
     {% block body %}
       <!-- jQuery -->
